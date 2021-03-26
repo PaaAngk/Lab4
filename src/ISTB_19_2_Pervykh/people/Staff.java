@@ -1,7 +1,5 @@
 package ISTB_19_2_Pervykh.people;
 
-import ISTB_19_2_Pervykh.menu.Menu_graphics;
-
 abstract public class Staff {
 
     private String name;
@@ -14,13 +12,7 @@ abstract public class Staff {
         this.profession = profession;
     }
 
-    public abstract void work ();
-
-    public void getInfo () {
-        System.out.printf("Имя: %s%n", name);
-        System.out.printf("Возраст: %d%n", age);
-        System.out.printf("Профессия: %s%n", profession);
-    }
+    public abstract String work ();
 
     public String getName() {
         return name;

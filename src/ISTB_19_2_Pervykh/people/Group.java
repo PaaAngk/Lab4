@@ -1,16 +1,14 @@
 package ISTB_19_2_Pervykh.people;
 
-import ISTB_19_2_Pervykh.menu.Menu_graphics;
-import ISTB_19_2_Pervykh.menu.Menu_logic;
+import ISTB_19_2_Pervykh.menu.Menu_GUI;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Group {
-
-    public static Random rnd = new Random();
     public static ArrayList<Staff> staff = new ArrayList<Staff>();
+    public static ArrayList<Staff> staffSearch = new ArrayList<Staff>();
 
+    // Метод добавления сотрудника
     public static void add (String[] list){
         switch (list[0]) {
             case "Рабочий":
@@ -25,48 +23,54 @@ public class Group {
         }
     }
 
-    public static void delete (String name) {
+    // Метод удаление сотрудника
+    public static void delete(String name) {
         int i = -1;
-        for (Staff org: staff) {
-            if (name.equals(org.getName())) i = staff.indexOf(org);
+        if (staff.removeIf(nextStaff -> nextStaff.getName().equals(name))){
+            i++;
         }
-        if (i != -1) {
-            staff.remove(i);
-            if (staff.size() == 0) Menu_logic.listNull = true;
+        if (i == -1) {
+            Menu_GUI.infoBox("Сотрудник не найден");
         }
-        else Menu_graphics.error("Сотрудник не найден");
     }
 
-    public static void search (String name) {
+    // Метод поиска сотрудника
+    public static ArrayList<Staff> searchName (String name) {
         int check = 0;
+        staffSearch.clear();
         for (Staff stf : staff) {
             if (name.equals(stf.getName())) {
-                System.out.println();
-                stf.getInfo();
+                staffSearch.add(stf);
                 check++;
             }
         }
-        if (check == 0) Menu_graphics.error("Сотрудник не найден");
-    }
-
-    public static void info () {
-        for (Staff stf : staff) {
-            System.out.println();
-            System.out.println("Сотрудник №" + (staff.indexOf(stf) + 1));
-            System.out.println("Должность: " + stf.getProfession() + " Имя: " + stf.getName() + " Возраст: " + stf.getAge());
-            System.out.println();
+        if (check == 0) {Menu_GUI.infoBox("Сотрудник не найден"); return null;}
+        else {
+            return staffSearch;
         }
     }
 
-    public static void work (String name) {
+    public static ArrayList<Staff> searchProff (String proff) {
         int check = 0;
+        staffSearch.clear();
         for (Staff stf : staff) {
-            if (name.equals(stf.getName())) {
-                stf.work();
+            if (proff.equals(stf.getProfession())) {
+                staffSearch.add(stf);
                 check++;
             }
         }
-        if (check == 0) Menu_graphics.error("Сотрудник не найден");
+        if (check == 0) {Menu_GUI.infoBox("Сотрудник не найден"); return null;}
+        else {
+            return staffSearch;
+        }
+    }
+
+    public int getSize(){
+        return staff.size();
+    }
+
+    public static Staff getStaff(int index){
+        return staff.get(index);
     }
 
 }

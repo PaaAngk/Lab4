@@ -1,7 +1,5 @@
 package ISTB_19_2_Pervykh.people;
 
-import ISTB_19_2_Pervykh.menu.Menu_graphics;
-
 import java.util.Random;
 
 public class Administration extends Staff {
@@ -17,18 +15,15 @@ public class Administration extends Staff {
     }
 
     @Override
-    public void work () {
+    public String work () {
         int workType = random.nextInt(3);
         switch (workType) {
             case 0:
-                System.out.printf("%s %s устраивает планёрку%n", getProfession(), getName());
-                break;
+                return (getProfession() + " " + getName() +" устраивает планёрку");
             case 1:
-                System.out.printf("%s %s раздаёт задания%n", getProfession(), getName());
-                break;
-            case 2:
-                System.out.printf("%s %s придумывает стратегию развития%n", getProfession(), getName());
-                break;
+                return (getProfession() + " " + getName() +" раздаёт задания");
+            default:
+                return (getProfession() + " " + getName() +" придумывает стратегию развития");
         }
     }
 

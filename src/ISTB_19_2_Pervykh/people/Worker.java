@@ -1,7 +1,5 @@
 package ISTB_19_2_Pervykh.people;
 
-import ISTB_19_2_Pervykh.menu.Menu_graphics;
-
 import java.util.Random;
 
 public class Worker extends Staff {
@@ -17,10 +15,10 @@ public class Worker extends Staff {
     }
 
     @Override
-    public void work () {
+    public String work () {
         int salary = random.nextInt(6);
-        if (salary < 3) System.out.printf("Неудачный день - маленькие деньги%n");
-        else System.out.printf("Удачный день - большие деньги%n");
+        if (salary < 3) return "Неудачный день - маленькие деньги";
+        else return "Удачный день - большие деньги";
     }
 
 }

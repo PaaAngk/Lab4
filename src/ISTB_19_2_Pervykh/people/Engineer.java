@@ -1,7 +1,5 @@
 package ISTB_19_2_Pervykh.people;
 
-import ISTB_19_2_Pervykh.menu.Menu_graphics;
-
 public class Engineer extends Staff {
 
     public Engineer () {
@@ -13,8 +11,8 @@ public class Engineer extends Staff {
     }
 
     @Override
-    public void work () {
-        System.out.printf("Новый день - новый чертёж!");
+    public String work () {
+        return "Новый день - новый чертёж!";
     }
 
 }
